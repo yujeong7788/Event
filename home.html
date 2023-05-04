@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>엄마 아빠 사랑해요~</title>
+
+	<style>
+		html,
+		body {
+			width: 100%;
+			height: 100%;
+		}
+
+		#intro {
+			position: absolute;
+			left: 10%;
+			top: 10%;
+			text-align: left;
+			font-size: 50px;
+			color: white;
+		}
+
+		#textBox {
+			position: relative;
+			z-index: 10;
+			line-height: 40px;
+			font-size: 24px;
+			left: 20px;
+		}
+
+		#container {
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			position: absolute;
+		}
+
+		img {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+		}
+
+		.cg{
+			opacity: 0;
+			z-index: 5;
+		}
+
+		span {
+			padding-left: 7px;
+			padding-right: 7px;
+			margin: 10px;
+			background-color: rgba(0, 0, 0, 0.6);
+			color: white;
+			display: inline-block;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- 재생할 .mp3 파일이 있다면 경로 삽입 -->
+	<!-- ./sounds/father_boy.mp3 남자버전 -->
+	<!-- ./sounds/father_girl.mp3 여자버전 -->
+	<audio src="./sounds/father_boy.mp3" controls id="myAudio" style="display: none"></audio>
+
+	<div id="container">
+
+		<!-- 배경 이미지 -->
+		<img src="./images/background.jpg"/>
+		<!-- 아래는 추억이 담긴 사진으로.. 15개까지는 충분합니다. -->
+		<img src="./images/1.jpg" name="images" class="cg"/>
+		<img src="./images/2.jpg" name="images" class="cg"/>
+		<img src="./images/3.jpg" name="images" class="cg"/>
+		<img src="./images/4.jpg" name="images" class="cg"/>
+		<img src="./images/5.jpg" name="images" class="cg"/>
+		<img src="./images/6.jpg" name="images" class="cg"/>
+		<img src="./images/7.jpg" name="images" class="cg"/>
+		<img src="./images/background.jpg" name="images" class="cg"/>
+
+		<div id="textBox">
+			<span>TO. 엄마 아빠</span><br>
+			<br>
+			<span>찬웅이에요</span><br>
+			<br>
+			<span>이번 어버이날에는</span><br>
+			<span>집에 못 올라갈 것 같아</span><br>
+			<span>미안한 마음에 만들어봤어요</span><br>
+			<span>다음달 휴가 때 한번 찾아뵐게요</span><br>
+			<br>
+			<span>아직 배울게 많지만</span><br>
+			<span>이제 이런거는 눈감고도 만드는</span><br>
+			<span>어엿한 개발자가 되었습니다 ㅎ</span><br>
+			<br>
+			<span>아빠가 말씀해주신대로</span><br>
+			<span>사회에 잘 자리 잡기 위해</span><br>
+			<span>저 요즘 참 바쁘게 살고 있어요</span><br>
+			<span>평소처럼 바쁘다는 핑계로</span><br>
+			<span>못 보는게 아니라서 그런지..</span><br>
+			<span>보고싶은 마음이 크네요 ㅎ</span><br>
+			<br>
+			<span>어렸을때 항상 재미없었던</span><br>
+			<span>엄마 아빠의 잔소리들이</span><br>
+			<span>점차 나이를 먹을때마다</span><br>
+			<span>참 소중한 조언이었다는걸 느껴요</span><br>
+			<br>
+			<span>사회에 나와보니 다른 사람에게</span><br>
+			<span>진심어린 조언 하나 듣기도</span><br>
+			<span>쉽지 않네요</span><br>
+			<br>
+			<span>지금껏 해주신 조언들을</span><br>
+			<span>인생의 나침반으로 삼아</span><br>
+			<span>길을 잃지 않고 잘 성장할게요</span><br>
+			<br>
+			<span>우리 가족들이 바라보는</span><br>
+			<span>엄마 아빠의 모습이나</span><br>
+			<span>사회에서 바라보는</span><br>
+			<span>엄마 아빠의 모습과 꼭 닮은</span><br>
+			<span>아들이 될테니 지켜봐주세요</span><br>
+			<br>
+			<span>엄마, 아빠 </span><br>
+			<span>제가 가는길을 항상 믿어주고</span><br>
+			<span>밀어주셔서 감사합니다.</span><br>
+			<br>
+			<br>
+			<span>사랑합니다~</span><br>
+			<br>
+			<br>
+			<span>찬웅 올림</span><br>
+		</div>
+
+	</div>
+
+	<script>
+		var audio = document.getElementById("myAudio");
+		var v_box = document.getElementById("textBox");
+
+		// 화면 클릭시 실행된다.
+		var isClick = false;  // 클릭을 한번만 허용하기 위한 토글 변수
+		document.addEventListener('click', function(e) {
+			if (!isClick) {
+				isClick = !isClick;
+
+				f_mv();	  	   // 편지 재생
+				audio.play();  // 소리 재생
+				setTimeout(f_ci, 61000);   // 61초 후부터 이미지 슬라이드 시작
+			}
+
+			// 클릭 지점에 하트 이미지 생성
+			var heart = document.createElement('img');
+			heart.src = './images/heart.gif';
+			heart.style.top = e.clientY + 'px';
+			heart.style.left = e.clientX + 'px';
+			heart.style.width = '100px';
+			heart.style.height = '100px';
+			heart.style.zIndex = 100;
+			heart.style.position = 'absolute';
+			document.body.appendChild(heart);
+			setTimeout(function() {
+				document.body.removeChild(heart);
+			}, 1000);
+		});
+
+
+
+		// 텍스트 문구 위로 올리기
+		const dist = 1;			// 편지 움직이는 간격 
+		const velocity = 40;  	// 편지 움직이는 속도 (작을수록 빠르다)
+
+		var v_windowHeight = window.innerHeight;
+
+		// 편지를 화면 하단으로 위치시키기
+		v_box.style.top = v_windowHeight + "px";
+
+		function f_mv() {
+			v_box.style.top = parseInt(v_box.style.top) - dist + "px";
+
+			setTimeout(f_mv, velocity);
+		}
+
+		// 이미지 태그들 가져오기
+		var v_images = document.getElementsByName("images");
+		var v_idx = 0;
+
+		// 이미지 슬라이드 쇼
+		const intervalTime = 10000;  // 이미지 슬라이드 전환 간격 시간 (ms)
+		function f_ci() {
+			if (v_idx < v_images.length) {
+				f_fadeIn(v_images[v_idx], 0);
+				// v_images[v_idx].style.visibility = "visible";
+				v_idx++;
+				setTimeout(f_ci, intervalTime);
+			}
+		}
+
+		// 이미지의 투명도를 천천히 증가시켜서 페이드 인 효과를 준다.
+		function f_fadeIn(p_image, p_op) {
+			p_op += 0.1;
+			p_image.style.opacity = p_op;
+
+			if (p_op >= 1) {
+				return;
+			}
+
+			setTimeout(function () {
+				f_fadeIn(p_image, p_op);
+			}, 200)
+		}
+
+	</script>
+</body>
+
+</html>
